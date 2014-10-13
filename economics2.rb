@@ -20,6 +20,12 @@ percentChsl = shell.ask('Чисельність службовців (% Ч сл)
 percentChmop = shell.ask('Чисельність молодшого обслуговуючого персоналу (% Ч моп): ').argument(:required).read_float / 100.0
 
 ## Input table
+system('clear')
+input_table << ['Tpl', Tpl] << ['Fe', Fe]
+input_table << ['Kvn', Kvn] << ['percentChdr', percentChdr]
+input_table << ['percentChitr', percentChitr] << ['percentChsl', percentChsl]
+input_table << ['percentChmop', percentChmop]
+puts input_table.render(:unicode)
 
 ## Calculations
 
@@ -35,3 +41,9 @@ Chsl = percentChsl * Chop
 Chmop = percentChmop * Chop
 
 ## Rendering
+output_table << ['Chop', 'Chop', Chop]
+output_table << ['Chdr', 'Chdr', Chdr]
+output_table << ['Chitr', 'Chitr', Chitr]
+output_table << ['Chsl', 'Chsl', Chsl]
+output_table << ['Chmop', 'Chmop', Chmop]
+puts output_table.render(:unicode, width: 90, resize: true)
