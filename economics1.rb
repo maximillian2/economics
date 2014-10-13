@@ -23,6 +23,7 @@ Vprop = shell.ask('Пропозиція на продаж акцій на сум
 Vprod = shell.ask('Реально проданих акцій на суму (V прод) (в тис.): ').argument(:required).read_float * 1000.0
 
 ## Input table
+system('clear')
 input_table << ['АКб', AKb] << ['P', P]
 input_table << ['K', K] << ['Ар', percentAp]
 input_table << ['Пч', Pch] << ['ПК', PK]
