@@ -21,29 +21,29 @@ percentChmop = shell.ask('Чисельність молодшого обслуг
 
 ## Input table
 system('clear')
-input_table << ['Tpl', Tpl] << ['Fe', Fe]
-input_table << ['Kvn', Kvn] << ['percentChdr', percentChdr]
-input_table << ['percentChitr', percentChitr] << ['percentChsl', percentChsl]
-input_table << ['percentChmop', percentChmop]
+input_table << ['Т пл', Tpl] << ['Ф е', Fe]
+input_table << ['К вн', Kvn] << ['% Ч др', percentChdr]
+input_table << ['% Ч ітр', percentChitr] << ['% Ч сл', percentChsl]
+input_table << ['% Ч моп', percentChmop]
 puts input_table.render(:unicode)
 
 ## Calculations
 
-##
+## Чисельність основних робочих 
 Chop = Tpl / (Fe * Kvn)
-##
+## Чисельність допоміжних робочих
 Chdr = percentChdr * Chop
-##
-Chitr = percentChitr * Chop
-##
-Chsl = percentChsl * Chop
-##
-Chmop = percentChmop * Chop
+## Чисельність інженерно-технічних робочих
+Chitr = percentChitr * (Chop + Chdr)
+## Чисельність службовців
+Chsl = percentChsl * (Chop + Chdr)
+## Чисельність молодшого обслуговуючого персоналу
+Chmop = percentChmop * (Chop + Chdr)
 
 ## Rendering
-output_table << ['Chop', 'Chop', Chop]
-output_table << ['Chdr', 'Chdr', Chdr]
-output_table << ['Chitr', 'Chitr', Chitr]
-output_table << ['Chsl', 'Chsl', Chsl]
-output_table << ['Chmop', 'Chmop', Chmop]
+output_table << ['Чисельність основних робочих', 'Chop', '%.0f' % Chop]
+output_table << ['Чисельність допоміжних робочих', 'Chdr', '%.0f' % Chdr]
+output_table << ['Чисельність інженерно-технічних робочих', 'Chitr', '%.0f' % Chitr]
+output_table << ['Чисельність службовців', 'Chsl', '%.0f' % Chsl]
+output_table << ['Чисельність молодшого обслуговуючого персоналу', 'Chmop', '%.0f' % Chmop]
 puts output_table.render(:unicode, width: 90, resize: true)
