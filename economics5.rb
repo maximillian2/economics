@@ -55,12 +55,12 @@ output_table << ['Технологічна собівартість одиниц
 # Річний економічний ефект при К1
 # Е н = 0.15 => constant
 # 1.1 = 110%
-K1Er = (K1.to_f * K1Csht1.to_f.round(2) + 0.15 * C1.to_f * 1.1) - (K1Csht2 * K1.to_f + 0.15 * C2.to_f * 1.1)
+K1Er = (K1.to_f * K1Csht1.to_f.round(2) + 0.15 * C1.to_f * 1.1) - (K1Csht2.to_f.round(2) * K1.to_f + 0.15 * C2.to_f * 1.1)
 output_table << ['Річний економічний ефект за К1', 'Ер за К1', '%.1f' % K1Er]
 
 # Умовно-річна економія при K1
 K1Eur = K1.to_f * K1Csht1.to_f.round(2) - K1.to_f * K1Csht2.to_f.round(2)
-output_table << ['Умовно-річна економія при К1', 'Е ур за К1', K1Eur]
+output_table << ['Умовно-річна економія при К1', 'Е ур за К1', '%.2f' % K1Eur]
 
 # Строк окупності при К1
 K1Tok = (C2.to_f * 1.1 - C1.to_f * 1.1) / K1Eur
@@ -68,14 +68,14 @@ output_table << ['Строк окупності (1)', 'Т ок', '%.2f' % K1Tok]
 
 # Річний економічний ефект від впровадження нової техніки при К2
 K2Er = (K2.to_f * K2Csht1.to_f.round(2) + 0.15 * C1.to_f * 1.1) - (K2.to_f * K2Csht2.to_f.round(2) + 0.15 * C2.to_f * 1.1)
-output_table << ['Річний економічний ефект від впровадження нової техніки при К2', 'Ер за К2', K2Er]
+output_table << ['Річний економічний ефект від впровадження нової техніки при К2', 'Ер за К2', '%.1f' %  K2Er]
 
 # Умовно-річна економія при К2
 K2Eur = K2.to_f * K2Csht1.to_f.round(2) - K2.to_f * K2Csht2.to_f.round(2)
-output_table << ['Умовно-річна економія при K2', 'Е ур за К2', K2Eur]
+output_table << ['Умовно-річна економія при K2', 'Е ур за К2', '%.2f' % K2Eur]
 
 # Строк окупності при К2
-K2Tok = (C2.to_f * 1.1 - C1.to_f * 1.1) / K2Eur
+K2Tok = (C2.to_f * 1.1 - C1.to_f * 1.1) / K2Eur.to_f
 output_table << ['Строк окупності (2)', 'Т ок', '%.2f' % K2Tok]
 
-puts output_table.render(:unicode, width: 90, resize: true)
+puts output_table.render(:unicode, width: 120, resize: true)
